@@ -67,17 +67,17 @@ p {
 
 }
 .boxLeft {
-    height: 445px;
+    height: 300px;
     border-bottom: 4px deepskyblue solid;
 }
 
 .boxRight {
-    height: 445px;
+    height: 300px;
     border-bottom: 4px deepskyblue solid;
 }
 
 .boxBottom {
-    height: 245px;
+    height: 380px;
     border-bottom: 4px deepskyblue solid;
 }
 

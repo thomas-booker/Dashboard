@@ -90,8 +90,8 @@
     <!-- Custom JavaScript -->
     <script>
         $(document).ready(checkTeamInfo);
-        $(document).ready(setInt);
-var myInt;
+        //$(document).ready(setInt);
+        var myInt;
         function setInt() {
              myInt = setInterval(checkLoc, 5000);
             console.log("Timer started");
@@ -109,7 +109,7 @@ var myInt;
             }
         }
 
-
+        $("#maintEdit").click(updateLocalStorage);
         $('#mDone').click(unEditable);
         $('#getArea').click(popArea);
 
@@ -158,7 +158,7 @@ var myInt;
         function editTeamInfo() {
         //$("#teamInfo").attr("contentEditable", "true");
             $("#editTeamForm").css("visibility", "visible");
-            var teaminfo = document.getElementById("tmInfo").innerHTML;
+            var teaminfo = document.getElementById("tmInfo").innerText;
             console.log(teaminfo);
             $("#teamText").val(teaminfo);
         }
