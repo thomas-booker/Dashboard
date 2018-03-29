@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Test data load</h1>
+<div id="test"></div>
+<div id="test2"></div>
+<div id="alertMsg"></div>
+
+
+<script>
+    $(document).ready(function() {
+
+        $.getJSON('http://localhost:3000/fetchdata', function(res) {
+            var x = JSON.stringify(res);
+            var y = JSON.parse(x);
+            document.getElementById("test").innerHTML = x;
+            document.getElementById("test2").innerHTML = res.Data[1].PersonName;
+
+
+            var table = "<table><tr><th>Person ID</th><th>Person Name</th></tr>";
+
+            for (var i=0;i<res.Data.length;i++) {
+                table += "<tr><td>" + res.Data[i].PersonID + "</td><td>" + res.Data[i].PersonName + "</td>";
+            }
+            table += "</table>";
+
+            document.getElementById("test2").innerHTML = table;
+
+        });
+
+        $(document).ready(function() {
+
+            $.getJSON('http://localhost:3000/getalerts', function (res) {
+                var x = JSON.stringify(res);
+                var y = JSON.parse(x);
+                //document.getElementById("test").innerHTML = x;
+                //document.getElementById("test2").innerHTML = res.Data[1].PersonName;
+
+
+                var caro = "<div class='carousel carousel-slider'>";
+
+                for (var i = 0; i < res.Data.length; i++) {
+                    caro += "<div class='carousel-item' href='#one'>" + "<p>" + res.Data[i].alertmsg + "</p></div>";
+                }
+                caro += "</div>";
+
+                document.getElementById("alertMsg").innerHTML = caro;
+
+            });
+        });
+
+        /*$.ajax({
+            url: 'http://localhost:3000/fetchdata',
+            dataType: "jsonp",
+            /* JSONP automatically handles the callback, meaning it doesn't need to be set
+            jsonpCallback: "_testcb",
+
+            cache: false,
+            timeout: 5000,
+            contentType: 'application/json',
+            success: function(data) {
+                console.log("success innit");
+                var jdata = JSON.stringify(data);
+                var jjdata = "'" + JSON.parse(jdata) = "'";
+                document.getElementById("test").innerHTML = jdata;
+                document.getElementById("test2").innerHTML = jjdata.data[1];
+
+                var table = "<table><tr><th>Person ID</th><th>Person Name</th></tr>";
+
+                for (var i=0;i<jjdata.length;i++) {
+                    table += "<tr><td>" + jjdata[i].PersonID + "</td>"
+                }
+
+                //$("test").append(data);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert('error - ' + textStatus + " " + errorThrown);
+            }
+        });*/
+    });
+
+
+</script>
+</body>
+</html>

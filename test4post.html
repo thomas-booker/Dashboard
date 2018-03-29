@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button onclick="doit1()">Click</button>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/ithelpinfo.js"></script>
+<script>
+    function doit1() {
+        var info = {
+            "text":"DEF WORKING NOW U WOT"
+        };
+
+        putTeamInfo(info);
+        setLocStor1();
+    }
+    function setLocStor1() {
+        console.log('SET FALSE');
+        localStorage.clear();
+        console.log('SET TRUE');
+        localStorage.setItem('update', 'yes');
+        var loc1 = localStorage.getItem('update');
+        console.log("Local storage test4post: " + loc1)
+    }
+
+
+
+
+</script>
+</body>
+</html>

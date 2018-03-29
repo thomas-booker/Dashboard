@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ITHelp Alerts</title>
+</head>
+<body class ="bgColor">
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper light-blue accent-3">
+            <a href="#" class="brand-logo">ico.</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="admin.html">Home</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="totw.html">Tip of the Week</a></li>
+                <li><a href="maint.html">Planned Maintenance</a></li>
+                <li><a href="meeting.html">Team Meeting</a></li>
+                <li><a href="major.html">Major Emergency</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="partiBox" id="particles-js"></div>
+<div class="container">
+    <div class="row section">
+        <div class="col s12 z-depth-2 boxTop">
+            <h1 style="text-align: center;">ITHelp Dashboard Admin</h1>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row section">
+        <div class="col s12 z-depth-2 boxTop">
+            <blockquote><h2>IT Alerts</h2></blockquote>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row section">
+        <div class="col s6 z-depth-2 boxTop">
+            <blockquote><h2>Alerts</h2></blockquote>
+            <!-- Div container for loading alerts -->
+            <div id="alertMsg"></div>
+        </div>
+        <div class="col s5 push-s1 z-depth-2 boxTop">
+            <blockquote><h2>Add new alert</h2></blockquote>
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger amber darken-4" href="#modal1"><i class="material-icons left">create</i>Add new alert</a>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4>Create a new alert</h4>
+                    <form action="http://localhost:3000/addalert" method="post">
+                        Title:<br>
+                        <input type="text" name="title">
+                        <br>
+                        Alert:<br>
+                        <input type="text" name="alert">
+                        <br>
+                        <div class="modal-footer">
+                            <input type="submit" value="Submit" id="alertAdd" class="modal-action modal-close waves-effect waves-green btn-flat">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="editAlertForm" style="visibility: visible;">
+        <div class="col s5 push-s1 z-depth-2 boxTop">
+            <blockquote><h2>Edit Alert</h2></blockquote>
+            <form action="http://localhost:3000/editalert" method="post">
+                Title:<br>
+                <input type="text" name="title" id="editTitle">
+                <br>
+                Alert:<br>
+                <input type="text" name="alert" id="editText">
+                <br>
+
+                <div class="modal-footer">
+                    <input type="submit" value="Submit" id="alertEdit" class="modal-action modal-close waves-effect waves-green btn-flat">
+                    <input type="button" value="Cancel" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="cancelEdit()">
+                    <input type="text" name="id" id="alertId" value="" style="visibility: hidden;">
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JavaScript links -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/alerts.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+<script src="js/particles.js"></script>
+<script src="js/app.js"></script>
+<script src="js/lib/stats.js"></script>
+<script src="js/ithelpinfo.js"></script>
+
+<script>
+
+    //modal initiator
+    $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+
+        $("#editAlertForm").css("visibility", "hidden");
+    });
+    $("#alertAdd").click(updateLocalStorage);
+
+
+    $(document).ready(checkAlertsAdmin);
+    //$('#alertLoad').click(addAlertId);
+
+    /*function addAlertId() {
+        $('#modal2').modal('open');
+        console.log("tst");
+        console.log(this.parentNode.getAttribute('id'));
+        var x = this.parentNode.getAttribute('id');
+    }*/
+
+    /*function popModal() {
+        $('#modal2').modal('open');
+        //console.log("MODEL 2");
+        //var x = this.parentNode.getAttribute('id');
+        //console.log($(".modal2").firstChild);
+        //sortIds();
+        //console.log(this.parentNode.getAttribute('id'));
+        //console.log(x);
+        //document.getElementById("alertId").innerHTML = x;
+    }*/
+
+
+
+    /*$(document).on("click", ".openEditBtn", function() {
+        var x = this.parentNode.getAttribute('id');
+        //var y = "edit" + x;
+        var z = $(this).find("testID");
+        console.log(z);
+        //console.log($(this).closest(".modal").find("alertId").val());
+
+        //document.getElementById("alertId").innerText = x;
+
+        //$(x).appendTo("#alertId");
+
+
+        //$(z).val(x);
+        //console.log($('.modal2 #alertID'));
+        //$('.modal2 #alertID').val(x);
+
+
+        //this.parentNode.setAttribute(z, x);
+        //$(".modal-body edit3").val(x);
+        //document.getElementById("edit3").innerHTML = x;
+        //console.log("2nd: " + document.getElementById("edit3").innerHTML);
+    });*/
+
+
+    //modal jquery select
+    //$("#alertAdd").click(addAlert);
+
+    // Add alert function
+
+        /*$('#alertMsg').on("click", "#delAl", function() {
+            var x = event.currentTarget;
+            var y = x.parent;
+            console.log("delete test " + y);
+            //console.log(x);
+        });*/
+
+/*
+Modal 2 for EDITING alert
+Couldn't get working
+Unable to populate any input box with ID gained from alert
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+        <h4>Edit alert</h4>
+    <form action="http://localhost:3000/editalert" method="post">
+        Title:<br>
+    <input type="text" name="title">
+        <br>
+        Alert:<br>
+    <input type="text" name="alert">
+        <br>
+        <input type="text" name="id" id="alertId" style="visibility: visible;">
+        <div class="modal-footer">
+        <input type="submit" value="Submit" id="alertEdit" class="modal-action modal-close waves-effect waves-green btn-flat">
+        </div>
+        </form>
+        </div>
+        </div> */
+
+
+</script>
+
+</body>
+</html>

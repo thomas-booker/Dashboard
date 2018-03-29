@@ -1,0 +1,202 @@
+/* ITHelp Dashboard - Main CSS */
+
+/* Body */
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #dfe9ec;
+}
+
+div {
+    background-color: white;
+}
+h2 {
+    margin-top: 1px;
+    margin-bottom: 0;
+    font-weight: bolder;
+}
+p {
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+.botPad {
+    padding-top: 10px;
+}
+
+
+.icoText {
+    font-size: 0.8em;
+    margin-top: 0px;
+}
+
+.section {
+
+    margin-bottom: 4px;
+    background-color: #dfe9ec;
+}
+
+.partiBox {
+    height: 200px;
+}
+
+
+.icoLogo {
+    letter-spacing: 9px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    margin-top: 2px;
+    font-size: 7em;
+}
+
+.pFont {
+    font-size: 1.5em;
+}
+
+.logoBorder {
+    border-right: 1px dashed;
+}
+
+.alertBox {
+    border-bottom: 4px deepskyblue solid;
+}
+
+.boxTop {
+    border-bottom: 4px deepskyblue solid;
+
+}
+.boxLeft {
+    height: 445px;
+    border-bottom: 4px deepskyblue solid;
+}
+
+.boxRight {
+    height: 445px;
+    border-bottom: 4px deepskyblue solid;
+}
+
+.boxBottom {
+    height: 245px;
+    border-bottom: 4px deepskyblue solid;
+}
+
+
+.oFlow {
+    overflow: hidden;
+}
+
+.itInfo {
+
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+textarea {
+    white-space: pre-wrap;
+}
+
+#textA {
+    visibility: hidden;
+}
+
+#editor-container {
+    height: 375px;
+}
+
+/*
+Blockquote styling
+ */
+blockquote {
+    border-left: 5px solid #ef6c00;
+}
+
+/*
+Alert Block styling for alerts.html
+ */
+.alertBlock {
+    background: #5DB7DE;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    width: 90%;
+    margin: auto;
+    border-left: 3px solid #07020D;
+    border-bottom: 3px solid #07020D;
+    margin-bottom: 5px;
+    border-top: 3px solid #D5CFE1;
+    border-right: 3px solid #D5CFE1;
+}
+.alertTitle {
+    text-decoration: underline;
+}
+.invisEdit {
+    visibility: visible;
+    float: right;
+    margin-right: 100px;
+    width: 300px;
+}
+
+/*
+Brand Logo styling
+ */
+.brand-logo {
+    margin-left: 10px;
+}
+
+.mainTitle {
+    font-size: 70px;
+    font-weight: bolder;
+
+}
+
+/*
+Button styles
+ */
+.btn {
+    margin: 5px;
+}
+
+/* 
+Hidden Alert Div box
+ */
+.hiddenAlert {
+    visibility: hidden;
+}
+
+
+
+/*
+Icon colours
+ */
+
+.material-icons.orange600 { color: #FB8C00; }
+.material-icons.red600 { color: #e53935; }
+.material-icons.blue600 { color: #00b0ff; }
+
+
+.carousel .carousel-item {
+    display: block;
+}
+
+.carousel {
+    height: 50px;
+}
+
+/* @media only screen and (min-width: 1280px) {
+    .bodyRight {
+        width: 38%;
+        float: right;
+        background-color: blue;
+        color: black;
+        padding: 10px;
+        height: 300px;
+        box-shadow: 5px 5px 10px black;
+    }
+
+} */
+
+textarea {
+    height: 250px;
+}

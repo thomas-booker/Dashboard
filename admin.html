@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ITHelp Dashboard Admin Panel</title>
+</head>
+<body class="bgColor">
+    <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper light-blue accent-3">
+            <a href="#" class="brand-logo">ITHelp</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="admin.html">Home</a></li>
+                <li><a href="alerts.html">Alerts</a></li>
+                <li><a href="totw.html">Tip of the Week</a></li>
+                <li><a href="maint.html">Planned Maintenance</a></li>
+                <li><a href="meeting.html">Team Meeting</a></li>
+                <li><a href="major.html">Major Emergency</a></li>
+            </ul>
+        </div>
+    </nav>
+    </div>
+    <div class="partiBox" id="particles-js"></div>
+    <div class="container">
+        <div class="row section">
+            <div class="col s12 z-depth-2 boxTop">
+                <h1 style="text-align: center;">ITHelp Dashboard Admin</h1>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row section">
+            <div class="col s12 z-depth-2 boxTop">
+                <blockquote><h2>ITHelp Team Information</h2></blockquote>
+                <div id="teamInfo" contentEditable="false" style="white-space: pre-line;"></div>
+                <button id="edit" class="btn waves-effect waves-light">Edit<i class="material-icons right">send</i></button>
+                <!-- <button id="done" class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button> -->
+            </div>
+        </div>
+        <div class="row section">
+        <div id="editTeamForm" style="visibility: hidden;">
+            <div class="col s10 push-s1 z-depth-2 boxTop">
+                <blockquote><h2>Edit Team Info</h2></blockquote>
+                <form action="http://localhost:3000/putteaminfo" method="post">
+                    Team information:<br>
+                    <textarea name="teaminfo" id="teamText" rows="50" cols="30" style="white-space: pre-line;">
+                    </textarea>
+                    <br>
+
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" id="maintEdit" class="modal-action modal-close waves-effect waves-green btn-flat">
+                        <input type="button" value="Cancel" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="cancelTeamEdit()">
+                        <input type="text" name="id" id="maintId" value="" style="visibility: hidden;">
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+
+        <!-- <a class="waves-effect waves-light btn modal-trigger" id="getArea" href="#modal1">Modal</a> -->
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                <label for="textarea1">Textarea</label>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="mDone" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript links -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/js.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/lib/stats.js"></script>
+    <script src="js/ithelpinfo.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(checkTeamInfo);
+        $(document).ready(setInt);
+var myInt;
+        function setInt() {
+             myInt = setInterval(checkLoc, 5000);
+            console.log("Timer started");
+        }
+
+        function checkLoc() {
+            console.log("Info checked");
+            var loc = localStorage.getItem('update');
+            console.log(loc);
+
+            if (loc !== null) {
+                checkTeamInfo();
+                console.log("Info checked");
+                localStorage.clear();
+            }
+        }
+
+
+        $('#mDone').click(unEditable);
+        $('#getArea').click(popArea);
+
+        function makeEditable() {
+            //document.getElementById('teamInfo').contentEditable = "true";
+            document.getElementById('textA').setAttribute('visibility', 'visible');
+        }
+
+
+
+        function popArea() {
+            console.log('Pop area console log');
+            var x = document.getElementById('tmInfo').innerHTML;
+
+            //var tInfo = "<pre>" + x[0].innerHTML + "</pre>";
+            //console.log(getTeamInfo(req));
+            console.log("First console log: " + x.replace("\r\n", "\\r\\n"));
+            document.getElementById('textarea1').innerText = x.replace("\r\n", "\\r\\n");
+        }
+
+        function unEditable() {
+
+            var form = "<pre>" + $('#textarea1').val() + "</pre>";
+            //var form = document.getElementById('textarea1').innerHtml;
+            console.log(form);
+            var text = {
+                "text": form
+            };
+            console.log(text);
+            putTeamInfo(text);
+            checkTeamInfo();
+            localStorage.setItem('update', 'yes');
+            var loc1 = localStorage.getItem('update');
+            console.log("Local storage test4post: " + loc1);
+            document.getElementById('teamInfo').contentEditable = "false";
+        }
+        $(document).ready(function(){
+            // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
+
+        /*
+        Editing Team Info via content editable div
+         */
+        $('#edit').click(editTeamInfo);
+        function editTeamInfo() {
+        //$("#teamInfo").attr("contentEditable", "true");
+            $("#editTeamForm").css("visibility", "visible");
+            var teaminfo = document.getElementById("tmInfo").innerHTML;
+            console.log(teaminfo);
+            $("#teamText").val(teaminfo);
+        }
+
+        $('#Done').click(submitTeamInfo);
+        function submitTeamInfo() {
+        }
+
+        function cancelTeamEdit() {
+            $("#teamText").val();
+            $("#editTeamForm").css("visibility", "hidden");
+        }
+
+    </script>
+</body>
+</html>
