@@ -5,89 +5,104 @@
 
 function checkMaint() {
     $.getJSON('http://localhost:3000/getmaint', function (res) {
-        var caro = "<table class='striped centered'><thead><tr><th>Title</th><th>Msg</th><th>From</th><th>To</th></tr></thead><tbody>";
-
-        for (var i = 0; i < res.Data.length; i++) {
-
-            var datef = new Date(res.Data[i].datefrom);
-            var datet = new Date(res.Data[i].dateto);
-
-            /*caro += "<div id='"+ res.Data[i].id +"'><h5 class='alertTitle' id='"+ res.Data[i].id +".title' style='float: left;'>" +
-                res.Data[i].title + "</h5><p id='"+ res.Data[i].id +".text' style='float: left;'>" + res.Data[i].msg + "</p><h5 style='float: right;'>Date from:</h5><p style='float: right;'>" +
-                dateConv(datef) + "<h5 style='float: right;'>Date to:</h5><p style='float: right;'>" + dateConv(datet) + "</div>";*/
-
-            caro += "<tr id='"+ res.Data[i].id +"'><td><h5>" + res.Data[i].title + "</h5></td><td>" + res.Data[i].msg +
-                "</td><td>" + dateConv(datef) + "</td><td>" + dateConv(datet) + "</td></tr>";
-
+        if (res.Data.length < 1) {
+            console.log("No planned maintenance");
+            var caro = "<h4>There is currently no maintenance planned</h4>";
+            document.getElementById("maintHomeMsg").innerHTML = caro;
         }
-        caro += "</table>";
-        document.getElementById("maintHomeMsg").innerHTML = caro;
+        else {
 
+            var caro = "<table class='striped centered' style='font-size: 24px; margin-bottom: 10px;'><thead><tr><th style='width: 40%'>Title</th><th style='width: 30%'>From</th><th style='width: 30%'>To</th></tr></thead><tbody>";
+
+            for (var i = 0; i < res.Data.length; i++) {
+
+                var datef = new Date(res.Data[i].datefrom);
+                var datet = new Date(res.Data[i].dateto);
+
+                /*caro += "<div id='"+ res.Data[i].id +"'><h5 class='alertTitle' id='"+ res.Data[i].id +".title' style='float: left;'>" +
+                    res.Data[i].title + "</h5><p id='"+ res.Data[i].id +".text' style='float: left;'>" + res.Data[i].msg + "</p><h5 style='float: right;'>Date from:</h5><p style='float: right;'>" +
+                    dateConv(datef) + "<h5 style='float: right;'>Date to:</h5><p style='float: right;'>" + dateConv(datet) + "</div>";*/
+
+                caro += "<tr id='" + res.Data[i].id + "'><td><h5>" + res.Data[i].title + "</h5></td>" +
+                    "<td>" + dateConv(datef) + "</td><td>" + dateConv(datet) + "</td></tr>";
+
+            }
+            caro += "</table>";
+            document.getElementById("maintHomeMsg").innerHTML = caro;
+        }
     });
 }
 
 function checkMaintAdmin() {
     $.getJSON('http://localhost:3000/getmaint', function (res) {
-        var caro = "";
-
-        for (var i = 0; i < res.Data.length; i++) {
-
-            var datef = new Date(res.Data[i].datefrom);
-            var datet = new Date(res.Data[i].dateto);
-
-            caro += "<div class='alertBlock z-depth-2' id='"+ res.Data[i].id +"'><h5 class='alertTitle' id='"+ res.Data[i].id +".title' >" +
-                res.Data[i].title + "</h5><p id='"+ res.Data[i].id +".text'>" + res.Data[i].msg + "</p><h5>Date from:</h5><p>" +
-                dateConv(datef) + "<h5>Date to:</h5><p>" + dateConv(datet) +
-                "</p><a class='waves-effect waves-light btn cyan lighten-3' id='delAl' onclick='delMaint(this)'><i class='material-icons'>delete</i></a>" +
-                "<a class='waves-effect waves-light btn cyan lighten-3 openEditBtn' id='maintLoad' onclick='editMaint(this)'><i class='material-icons'>create</i></a></div>";
+        if (res.Data.length < 1) {
+            console.log("No planned maintenance");
+            var caro = "<h4>There is currently no maintenance planned</h4>";
+            document.getElementById("maintMsg").innerHTML = caro;
         }
-        document.getElementById("maintMsg").innerHTML = caro;
+        else {
+            var caro = "<table class='striped centered' style='margin-bottom: 10px;'><thead><tr><th style='width: 40%'>Title</th><th>From</th><th>To</th><th>Modify</th></tr></thead>";
 
+            for (var i = 0; i < res.Data.length; i++) {
+
+                var datef = new Date(res.Data[i].datefrom);
+                var datet = new Date(res.Data[i].dateto);
+
+                caro += "<tr id='" + res.Data[i].id + "'><td><h5 id='" + res.Data[i].id + ".title' >" +
+                    res.Data[i].title + "</h5></td><td><p>" + dateConv(datef) + "</p></td>" +
+                    "<td><p>" + dateConv(datet) + "</p></td>" +
+                    "<td><a class='waves-effect waves-light btn red accent-3 openEditBtn' id='maintLoad' onclick='editMaint(this)'><i class='material-icons'>create</i></a>" +
+                    "<a class='waves-effect waves-light btn red accent-3' id='delAl' onclick='delMaint(this)'><i class='material-icons'>delete</i></a></tr>";
+            }
+            caro += "</table>";
+            document.getElementById("maintMsg").innerHTML = caro;
+        }
     });
 }
 
-function dateConv(date) {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    var day = date.getDay();
-    var month = date.getMonth();
-    var seconds = date.getTime();
-    var hrs = date.getHours();
-    var mins = (date.getMinutes()<10?'0':'') + date.getMinutes();
-    return hrs + ":" + mins + ", " + days[day] + ", " + date.getDate() + " " + months[month] + " " + date.getFullYear();
-}
+
 /*
 Edit maintenance functions
  */
 function editMaint(x) {
-    $("#editMaintForm").css("visibility", "visible");
-    var y = x.parentNode.getAttribute("id");
-    var b = y + ".title";
-    var e = y + ".text";
-    var c = document.getElementById(b).innerHTML;
-    var d = document.getElementById(e).innerHTML;
-    console.log(b);
-    var a = x.parentNode.getAttribute(b);
+    console.log(x.parentNode.parentNode);
+    var appID = x.parentNode.parentNode.getAttribute("id");
+    var appName = document.getElementById(appID + ".title").textContent;
 
-    //console.log("Maintenance title: " + c);
-    //console.log(y);
-    $("#maintId").val(y);
-    $("#maintTitle").val(c);
-    $("#maintText").val(d);
+    // Modal controls - opens and prepopulates fields
+    $('#modal2').modal('open');
+    document.getElementById("maintTitle").value = appName;
+    document.getElementById("maintModalID").innerHTML = appID;
+}
+
+function updateMaint() {
+    var title = document.getElementById("maintTitle").value;
+    var appID = document.getElementById("maintModalID").innerHTML;
+    var datef = document.getElementById("maintDateF").value;
+    var datet = document.getElementById("maintDateT").value;
+    var timef = document.getElementById("maintTimeF").value;
+    var timet = document.getElementById("maintTimeT").value;
+
+    //console.log("Name: " + title + ", ID: " + appID + ", Date from: " + datef + ", Time from: " + timef + ", Date to: " + datet + ", Time to: " + timet);
+
+    var maintInfo = {
+        "id": appID,
+        "title": title,
+        "datef": datef,
+        "datet": datet,
+        "timef": timef,
+        "timet": timet
+    };
+
+    // JQuery AJAX call
+    $.post('http://localhost:3000/editmaint', maintInfo);
     localStorage.setItem('update', 'yes');
-    var loc1 = localStorage.getItem('update');
-    console.log("Local storage test4post: " + loc1);
-    //console.log($("#alertId").val());
+    checkMaintAdmin();
 }
-function cancelMaintEdit() {
-    $("#MaintId").val();
-    $("#maintTitle").val();
-    $("#maintText").val();
-    $("#editMaintForm").css("visibility", "hidden");
-}
+
 function delMaint(x) {
-    var y = x.parentNode.getAttribute("id");
-    console.log("Delete test");
+    var y = x.parentNode.parentNode.getAttribute("id");
+    console.log("Delete test: " + x.parentNode.parentNode.getAttribute("id"));
     //var z = y.valueOf();
     //console.log(y);
     deleteMaint(y);
@@ -97,7 +112,6 @@ function deleteMaint(maint) {
         "text": maint
     };
     $.post('http://localhost:3000/deletemaint', text, function(res) {
-        localStorage.setItem('update', 'yes');
         localStorage.setItem('update', 'yes');
         var loc1 = localStorage.getItem('update');
         console.log("Local storage test4post: " + loc1);

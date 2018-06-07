@@ -2,6 +2,8 @@
 
 /* Body */
 
+
+
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #dfe9ec;
@@ -12,7 +14,7 @@ div {
 }
 h2 {
     margin-top: 1px;
-    margin-bottom: 5px;
+    margin-bottom: 0;
     font-weight: bolder;
 }
 p {
@@ -57,26 +59,26 @@ p {
 }
 
 .alertBox {
-    border-bottom: 4px #ff1744 solid;
+    border-bottom: 4px deepskyblue solid;
 }
 
 .boxTop {
-    border-bottom: 4px #ff1744 solid;
+    border-bottom: 4px deepskyblue solid;
 
 }
 .boxLeft {
-    /* height: 300px; */
-    border-bottom: 4px #ff1744 solid;
+    height: 300px;
+    border-bottom: 4px deepskyblue solid;
 }
 
 .boxRight {
-    /* height: 300px; */
-    border-bottom: 4px #ff1744 solid;
+    height: 300px;
+    border-bottom: 4px deepskyblue solid;
 }
 
 .boxBottom {
-    /* height: 380px; */
-    border-bottom: 4px #ff1744 solid;
+    height: 380px;
+    border-bottom: 4px deepskyblue solid;
 }
 
 
@@ -108,7 +110,7 @@ textarea {
 Blockquote styling
  */
 blockquote {
-    border-left: 5px solid #ff1744;
+    border-left: 5px solid #ef6c00;
 }
 
 /*
@@ -146,8 +148,7 @@ Brand Logo styling
 .mainTitle {
     font-size: 70px;
     font-weight: bolder;
-    margin-top: 1px;
-    margin-bottom: 1px;
+
 }
 
 /*
@@ -204,120 +205,4 @@ Icon colours
 
 textarea {
     height: 250px;
-}
-
-/*
- Table styling
- */
-
-td {
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
-
-/*
- Overriding Materialize box styling
- */
-
-.row {
-    margin-bottom: 1px;
-
-}
-.col {
-}
-
-/*
- Applications Status message styling
- */
-.appsBox {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 5px;
-    padding-bottom: 10px;
-}
-.appsBox1 {
-    color: white;
-    border: 2px solid red;
-    background-color: red;
-    border-radius: 5%;
-    box-shadow: 1px 1px 5px black;
-    margin: 3px;
-}
-.appsBox2 {
-    color: white;
-    border: 2px solid orange;
-    background-color: orange;
-    border-radius: 5%;
-    box-shadow: 1px 1px 5px black;
-    margin: 3px;
-}
-.appsBox3 {
-    color: white;
-    border: 2px solid #2ECC40;
-    background-color: #2ECC40;
-    border-radius: 5%;
-    box-shadow: 1px 1px 5px black;
-    margin: 3px;
-}
-.appsAdmin {
-
-}
-
-
-.frontContact {
-    font-size: 26px;
-}
-
-/*
- Override of Materialize's radio button
- fixing issue that made radio buttons not show
- */
-[type="radio"]:not(:checked), [type="radio"]:checked {
-    position: relative;
-    opacity: 1;
-}
-/*
-    Media screen
- */
-@media screen and (max-width: 800px) {
-    .appsBox {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 5px;
-        padding-bottom: 10px;
-    }
-    .frontContact {
-        font-size: 18px;
-    }
-}
-@media screen and (max-width: 500px) {
-    .appsBox {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 5px;
-        padding-bottom: 10px;
-    }
-    .frontContact {
-        font-size: 12px;
-    }
-}
-
-
-.overlay {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     z-index: 10;
-     background-color: #dfe9ec;
- }
-.overlay2 {
-    position: absolute;
-    top: 30%;
-    left: 20%;
-    width: 60%;
-    height: 20%;
-    z-index: 9;
-    background-color: white;
 }

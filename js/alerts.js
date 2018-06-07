@@ -28,6 +28,7 @@ function checkAlerts() {
 /*
 Check alerts for admin page
  */
+/*
 function checkAlertsAdmin() {
 
     $.getJSON('http://localhost:3000/getalerts', function (res) {
@@ -45,16 +46,45 @@ function checkAlertsAdmin() {
         document.getElementById("alertMsg").innerHTML = caro;
 
     });
+} */
+
+/*
+    Test function for table instead of div
+ */
+function checkAlertsAdmin() {
+
+    $.getJSON('http://localhost:3000/getalerts', function (res) {
+        var caro = "<table><thead><tr><th>Title</th><th>Alert</th><th>Edit</th><th>Delete</th></tr></thead><tbody>";
+
+        for (var i = 0; i < res.Data.length; i++) {
+
+            var id = res.Data[i].id;
+            var title = res.Data[i].alerttitle;
+            var msg = res.Data[i].alertmsg;
+
+            caro += "<tr id='"+ id +"'><td><p class='alertTitle' id='"+ id +".title' >" +
+                title + "</p></td><td><p id='"+ id +".text'>" + msg +
+                "<td><a class='waves-effect waves-light btn cyan lighten-3 openEditBtn' id='" + id + "' onclick='editAlert(id)'><i class='material-icons'>create</i></a></td>" +
+                "</p></td><td><a class='waves-effect waves-light btn cyan lighten-3' id='" + id + "' onclick='delItem(id)'><i class='material-icons'>delete</i></a></td></tr>";
+        }
+        caro += "</tbody></table>";
+        //console.log(caro);
+        document.getElementById("alertMsg").innerHTML = caro;
+
+    });
 }
+
 /*
 Delete alert functions
  */
 function delItem(x) {
-    var y = x.parentNode.getAttribute("id");
+    //var y = x.parentNode.getAttribute("id");
+
+    console.log(x);
 
     //var z = y.valueOf();
     //console.log(y);
-    deleteAlert(y);
+    deleteAlert(x);
 }
 function deleteAlert(alert) {
     var text = {
@@ -74,13 +104,16 @@ Edit alert functions
  */
 function editAlert(x) {
     $("#editAlertForm").css("visibility", "visible");
-    var y = x.parentNode.getAttribute("id");
+    //var y = x.parentNode.getAttribute("id");
+    var y = x;
+    console.log(y);
     var b = y + ".title";
+    console.log("B: " + b);
     var e = y + ".text";
     var c = document.getElementById(b).innerHTML;
     var d = document.getElementById(e).innerHTML;
     console.log(b);
-    var a = x.parentNode.getAttribute(b);
+    //var a = x.parentNode.getAttribute(b);
 
     console.log("Alert title: " + c);
     console.log(y);

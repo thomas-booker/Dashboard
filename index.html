@@ -3,63 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ITHelp Dashboard</title>
 </head>
-<body class="bgColor">
+<body>
+<div id="teamMeeting" class="overlay" style="visibility: hidden;">
+    <div class="col s6 z-depth-2 overlay2 boxTop" style="height: auto;">
+    <h2 style="text-align: center">ITHelp is currently in a team meeting</h2>
+    <br/>
+    <h2 style="text-align: center">Please contact Northgate on 6111</h2>
+    </div>
+</div>
+<div id="majorEmergency" class="overlay" style="visibility: hidden;">
+    <div class="col s6 z-depth-2 overlay2 boxTop" style="height: auto;>
+        <h2 style="text-align: center">There is currently a major emergency</h2>
+        <br/>
+        <h2 style="text-align: center">All systems are affected</h2>
+    </div>
+</div>
     <div class="container">
         <div class="row section">
             <div class="col s12 z-depth-2 boxTop">
-                <!-- <div class="col s3 logoBorder center">
-                    <h1 class="icoLogo">ITHelp</h1>
-                    <!--<p class="icoText">Information Commissioner's Office</p>
-                </div> -->
                 <div class="col s12 center"><h1 class="mainTitle">ITHelp Dashboard</h1></div>
             </div>
         </div>
         <div class="divider"></div>
         <div class="row section">
-            <div class="col s12 z-depth-2 alertBox">
-                <div class="col s1"><i class="medium material-icons red600" style="padding-top: 20px">add_alert</i></div>
-                <div class="col s11 oFlow"><div class="owl-carousel" id="alertMsg" style="padding-top: 7px"></div></div>
+            <div class="col s12 z-depth-2 center boxLeft oFlow">
+                <h2 style="align-content: center">Application Status</h2>
+                <div id="appHomeMsg" class="appsBox" ></div>
 
             </div>
+
         </div>
             <div class="divider"></div>
         <div class="row section">
-            <div class="col s4 z-depth-2 center boxLeft oFlow">
-                <i class="large material-icons blue600">computer</i>
-                <h2>ITHelp</h2>
-                <div style="white-space: pre-line;"><h3 id="teamInfo"></h3></div>
-            </div>
-            <div class="col s7 push-s1 z-depth-2 center boxRight oFlow">
-                <i class="large material-icons blue600">info_outline</i>
-                <h2>Tip of the Week</h2>
-                <!-- Div container for loading tips -->
-                <div id="tipMsg"></div>
-            </div>
-        </div>
-            <div class="divider"></div>
-        <div class="row section">
-            <div class="col s12 z-depth-2 boxBottom oFlow">
-                <div class="row">
-                <div class="col s1"><i class="large material-icons orange600">access_alarm</i></div>
-                <div class="col s11"><h2 class="botPad">Planned maintenance</h2></div>
-                </div>
-                <div class="row">
+            <div class="col s12 z-depth-2 center boxBottom oFlow">
+
+                <!-- <div class="col s1"><i class="large material-icons orange600">access_alarm</i></div> -->
+                <h2 class="botPad">Planned Maintenance</h2>
+
                     <div class="col s12 maintBox">
                         <div id="maintHomeMsg"></div>
                     </div>
-                </div>
+
+            </div>
+        </div>
+        <div class="row section">
+            <div class="col s12 z-depth-2 center boxRight oFlow">
+                <h2>Contact</h2>
+                <table class="centered">
+                    <thead>
+                    <tr>
+                        <th>ITHelp</th>
+                        <th>Northgate</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><p align="center" class="frontContact"><i class="material-icons small">phone</i> 6886 (0330 4146886)</p></td>
+                        <td><p align="center" class="frontContact"><i class="material-icons small">phone</i> 6111 (01625 722094)</p></td>
+                    </tr>
+                    <tr>
+                        <td><p align="center" class="frontContact"><i class="material-icons small">email</i> ITHelp@ico.org.uk</p></td>
+                        <td><p align="center" class="frontContact"><i class="material-icons small">email</i> ICOServiceDesk@northgateps.com</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
             </div>
         </div>
     </div>
-
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -67,6 +86,8 @@
     <script type="text/javascript" src="js/alerts.js"></script>
     <script type="text/javascript" src="js/js.js"></script>
     <script type="text/javascript" src="js/maint.js"></script>
+    <script type="text/javascript" src="js/apps.js"></script>
+<script type="text/javascript" src="js/pagechange.js"></script>
     <script src="js/ithelpinfo.js"></script>
 
     <script src="js/owl.carousel.min.js"></script>
@@ -74,12 +95,12 @@
 
 <script>
 
-    $(document).ready(checkAlerts);
-    $(document).ready(checkTip);
-    $(document).ready(checkTeamInfo);
+    //$(document).ready(checkAlerts);
+    //$(document).ready(checkTip);
+    // $(document).ready(checkTeamInfo);
     $(document).ready(setInt);
     $(document).ready(checkMaint);
-
+    $(document).ready(checkApps);
 
 
 
@@ -101,30 +122,11 @@
                 autoplayHoverPause: true
             });
         },1000);
-
-
     var myInt;
     function setInt() {
-        myInt = setInterval(checkLoc, 5000);
+        myInt = setInterval(checkLoc, 1000);
         console.log("Timer started");
     }
-
-    function checkLoc() {
-        console.log("Info checked");
-        var loc = localStorage.getItem('update');
-        console.log(loc);
-
-        if (loc !== null) {
-            //checkTeamInfo();
-            //checkAlerts();
-            location.reload();
-            console.log("Info checked");
-            localStorage.clear();
-        }
-    }
-
-
-
 </script>
 </body>
 </html>

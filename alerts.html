@@ -40,20 +40,58 @@
     </div>
     <div class="divider"></div>
     <div class="row section">
-        <div class="col s6 z-depth-2 boxTop">
+        <div class="col s12 z-depth-2 boxTop">
             <blockquote><h2>Alerts</h2></blockquote>
-            <!-- Div container for loading alerts -->
-            <div id="alertMsg"></div>
-        </div>
-        <div class="col s5 push-s1 z-depth-2 boxTop">
-            <blockquote><h2>Add new alert</h2></blockquote>
+            <h4>Add new alert</h4>
             <!-- Modal Trigger -->
             <a class="waves-effect waves-light btn modal-trigger amber darken-4" href="#modal1"><i class="material-icons left">create</i>Add new alert</a>
             <!-- Modal Structure -->
             <div id="modal1" class="modal">
                 <div class="modal-content">
                     <h4>Create a new alert</h4>
-                    <form action="http://localhost:3000/addalert" method="post">
+                    <form..0 action="http://localhost:3000/addalert" method="post">
+                        Title:<br>
+                        <input type="text" name="title">
+                        <br>
+                        Alert:<br>
+                        <input type="text" name="alert">
+                        <br>
+                        <div class="modal-footer">
+                            <input type="submit" value="Submit" id="alertAdd" class="modal-action modal-close waves-effect waves-green btn-flat">
+                        </div>
+                    </form..0>
+                </div>
+            </div>
+            <br>
+            <hr class="horizRule" noshade>
+            <br>
+            <!-- Div container for loading alerts -->
+            <div id="alertMsg"></div>
+        </div>
+        <div id="editAlertForm" style="visibility: visible;">
+            <div class="col s5 push-s1 z-depth-2 boxTop">
+                <blockquote><h2>Edit Alert</h2></blockquote>
+                <form action="http://localhost:3000/editalert" method="post">
+                    Title:<br>
+                    <input type="text" name="title" id="editTitle">
+                    <br>
+                    Alert:<br>
+                    <input type="text" name="alert" id="editText">
+                    <br>
+
+                    <div class="modal-footer">
+                        <input type="submit" value="Submit" id="alertEdit" class="modal-action modal-close waves-effect waves-green btn-flat">
+                        <input type="button" value="Cancel" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="cancelEdit()">
+                        <input type="text" name="id" id="alertId" value="" style="visibility: hidden;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+<form class="form-inline" action="http://localhost:3000/addalert" method="post">
                         Title:<br>
                         <input type="text" name="title">
                         <br>
@@ -64,31 +102,7 @@
                             <input type="submit" value="Submit" id="alertAdd" class="modal-action modal-close waves-effect waves-green btn-flat">
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-        <div id="editAlertForm" style="visibility: visible;">
-        <div class="col s5 push-s1 z-depth-2 boxTop">
-            <blockquote><h2>Edit Alert</h2></blockquote>
-            <form action="http://localhost:3000/editalert" method="post">
-                Title:<br>
-                <input type="text" name="title" id="editTitle">
-                <br>
-                Alert:<br>
-                <input type="text" name="alert" id="editText">
-                <br>
-
-                <div class="modal-footer">
-                    <input type="submit" value="Submit" id="alertEdit" class="modal-action modal-close waves-effect waves-green btn-flat">
-                    <input type="button" value="Cancel" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="cancelEdit()">
-                    <input type="text" name="id" id="alertId" value="" style="visibility: hidden;">
-                </div>
-            </form>
-        </div>
-        </div>
-    </div>
-</div>
-
+                    -->
 
 <!-- JavaScript links -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
