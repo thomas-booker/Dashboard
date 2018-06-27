@@ -22,84 +22,64 @@ p {
 .botPad {
     padding-top: 10px;
 }
-
-
 .icoText {
     font-size: 0.8em;
-    margin-top: 0px;
+    margin-top: 0;
 }
-
 .section {
-
     margin-bottom: 4px;
     background-color: #dfe9ec;
 }
-
 .partiBox {
     height: 200px;
 }
-
-
 .icoLogo {
     letter-spacing: 9px;
     font-weight: 500;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     margin-top: 2px;
     font-size: 7em;
 }
-
 .pFont {
     font-size: 1.5em;
 }
-
 .logoBorder {
     border-right: 1px dashed;
 }
-
 .alertBox {
     border-bottom: 4px #ff1744 solid;
 }
 
 .boxTop {
     border-bottom: 4px #ff1744 solid;
-
 }
 .boxLeft {
     /* height: 300px; */
     border-bottom: 4px #ff1744 solid;
 }
-
 .boxRight {
     /* height: 300px; */
     border-bottom: 4px #ff1744 solid;
 }
-
 .boxBottom {
     /* height: 380px; */
     border-bottom: 4px #ff1744 solid;
 }
-
-
 .oFlow {
     overflow: hidden;
 }
-
 .itInfo {
 
 }
-
 pre {
     white-space: pre-wrap;
 }
-
 textarea {
     white-space: pre-wrap;
 }
-
 #textA {
     visibility: hidden;
 }
-
 #editor-container {
     height: 375px;
 }
@@ -175,63 +155,47 @@ Hidden Alert Div box
 /*
 Icon colours
  */
-
 .material-icons.orange600 { color: #FB8C00; }
 .material-icons.red600 { color: #e53935; }
 .material-icons.blue600 { color: #00b0ff; }
+.material-icons.md-48 { font-size: 160px; }
 
-
+/*
+    Carousel settings - currently not in use
+ */
 .carousel .carousel-item {
     display: block;
 }
-
 .carousel {
     height: 50px;
 }
-
-/* @media only screen and (min-width: 1280px) {
-    .bodyRight {
-        width: 38%;
-        float: right;
-        background-color: blue;
-        color: black;
-        padding: 10px;
-        height: 300px;
-        box-shadow: 5px 5px 10px black;
-    }
-
-} */
-
 textarea {
     height: 250px;
 }
-
 /*
  Table styling
  */
-
 td {
     padding-top: 1px;
     padding-bottom: 1px;
 }
-
+th {
+    padding-top: 0;
+    padding-bottom: 0;
+}
 /*
  Overriding Materialize box styling
  */
-
 .row {
     margin-bottom: 1px;
 
 }
-.col {
-}
-
 /*
  Applications Status message styling
  */
 .appsBox {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 5px;
     padding-bottom: 10px;
 }
@@ -262,12 +226,9 @@ td {
 .appsAdmin {
 
 }
-
-
 .frontContact {
     font-size: 26px;
 }
-
 /*
  Override of Materialize's radio button
  fixing issue that made radio buttons not show
@@ -301,8 +262,10 @@ td {
         font-size: 12px;
     }
 }
-
-
+/*
+    Overlay settings for page change to
+    Team Meeting / Major Emergency
+ */
 .overlay {
      position: absolute;
      top: 0;
